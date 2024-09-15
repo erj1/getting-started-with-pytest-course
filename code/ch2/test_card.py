@@ -3,6 +3,7 @@ from cards import Card
 
 def test_field_access():
     c = Card("something", "brian", "todo", 123)
+    # print(f"\n{c}")
     assert c.summary == "something"
     assert c.owner == "brian"
     assert c.state == "todo"
@@ -11,6 +12,7 @@ def test_field_access():
 
 def test_defaults():
     c = Card()
+    # print(f"\n{c}")
     assert c.summary is None
     assert c.owner is None
     assert c.state == "todo"
@@ -31,16 +33,18 @@ def test_equality_with_diff_ids():
 
 def test_inequality():
     c1 = Card("something", "brian", "todo", 123)
-    c2 = Card("completely different", "okken", "done", 123)
+    c2 = Card("completely different", "eric", "todo", 4567)
     assert c1 != c2
 
 
 def test_from_dict():
     c1 = Card("something", "brian", "todo", 123)
-    c2_dict = {"summary": "something",
-               "owner": "brian",
-               "state": "todo",
-               "id": 123}
+    c2_dict = {
+        "summary": "something",
+        "owner": "brian",
+        "state": "todo",
+        "id": 123
+    }
     c2 = Card.from_dict(c2_dict)
     assert c1 == c2
 
@@ -48,8 +52,10 @@ def test_from_dict():
 def test_to_dict():
     c1 = Card("something", "brian", "todo", 123)
     c2 = c1.to_dict()
-    c2_expected = {"summary": "something",
-                   "owner": "brian",
-                   "state": "todo",
-                   "id": 123}
+    c2_expected = {
+        "summary": "something",
+        "owner": "brian",
+        "state": "todo",
+        "id": 123
+    }
     assert c2 == c2_expected
